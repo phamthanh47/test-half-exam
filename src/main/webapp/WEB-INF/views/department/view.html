@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View Department</title>
+</head>
+<body>
+<h1>View Department: <span th:text="${department.name}"></span></h1>
+<p>
+    <a th:href="@{/departments}">List Department</a>
+</p>
+<table>
+    <tr>
+        <td>Name</td>
+        <td>Birhdate</td>
+        <td>Address</td>
+        <td>Avatar</td>
+        <td>Salary</td>
+    </tr>
+    <th:block th:each="e:${employees}">
+    <tr>
+        <td th:text="${e.name}"></td>
+        <td th:text="${e.birthdate}"></td>
+        <td th:text="${e.address}"></td>
+        <td> <img width="50px" height="50px" th:src="@{'/i/' + ${e.avatar}}"></td>
+        <td th:text="${e.salary}"></td>
+    </tr>
+    </th:block>
+</table>
+</body>
+</html>

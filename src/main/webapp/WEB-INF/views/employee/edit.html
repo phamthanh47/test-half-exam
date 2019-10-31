@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Employee</title>
+</head>
+<body>
+<p>
+    <a th:href="@{/employees}"> List Employee</a>
+</p>
+<form method="post" th:action="@{/edit-employee}" th:object="${employee}" enctype="multipart/form-data">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" th:field="*{name}"/> </td>
+        </tr>
+        <tr>
+            <td>Birthdate:</td>
+            <td><input type="text" th:field="*{birthdate}"/></td>
+        </tr>
+        <tr>
+            <td>Address:</td>
+            <td><input type="text" th:field="*{address}"/> </td>
+        </tr>
+        <tr>
+            <td>Avatar</td>
+            <td><img  width="50px" height="50px" th:src="@{'/i/' + ${employee.avatar}}"></td>
+            <td><input type="file" th:field="*{avatar}"/></td>
+        </tr>
+        <tr>
+            <td>Salary</td>
+            <td><input type="text" th:field="*{salary}"/> </td>
+        </tr>
+        <tr>
+            <td>Department:</td>
+            <td>
+                <select name="department">
+                    <option th:each="d : ${departments}"
+                            th:value="${d.id}"
+                            th:text="${d.name}"
+                            th:selected="(${d.id} == *{department.id})"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Save"/> </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
